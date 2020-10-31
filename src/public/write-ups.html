@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvolveSec</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="estiloEvolve.css">
+    <link rel="sortcut icon" href="imagens/crime.png">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="title-header">
+                <h1>
+                    EVOLVE<span style="color:rgb(235, 225, 225)">SEC</span>
+            </div>
+   
+            <div class="busca">
+                <input type="text" placeholder="BUSCAR...">
+            </div>
+
+            <div class="nav">
+                <ul>
+                  <li><a href="index.html ">NEWS</a></li>
+                  <li><a href="artigos.html">ARTIGOS</a></li>
+                  <li><a href="">WRITE-UPS</a></li>
+                  <li><a href="publicar.html">PUBLICAR</a></li>
+            
+        
+                  <li><a href="login.html" style="width:20px;"><i class="fa fa-user-circle-o" style="padding: 0; font-size: 25px;"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-2">
+        <div class="conteudo">
+            <div class="title-conteudo">
+                WRITE-UPS
+            </div>
+            <div id="itens" class="listaWriteUps" style="margin-bottom: 0;">
+                
+            </div>
+            <div class="listaWriteUps" style="margin-top: 0;">
+                <a href="">
+                    <div class="writeUp">
+                        <img src="imagens/fortnite.png" alt="">
+                        <div class="writeUp-conteudo">
+                            <h1>Explorando falha de XSS no sistema de autenticação do Fortnite</h1>
+                            <div class="writeUp-rodape">
+                                <i class="fa fa-user-circle-o" style="padding: 0; font-size: 25px;"></i> Gabriel Pato
+                                <span>
+                                    WRITE-UP - 2020/04/12
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                
+                <br>
+                <a href="exemploWriteUp.html">
+                    <div class="writeUp">
+                        <img src="imagens/pythonTrojan.png" alt="">
+                        <div class="writeUp-conteudo">
+                            <h1>Ataque de Trojan(Cavalo de Tróia) com Python</h1>
+                            <div class="writeUp-rodape">
+                                <i class="fa fa-user-circle-o" style="padding: 0; font-size: 25px;"></i>Vinicius de Carvalho
+                                <span>
+                                    WRITE-UP - 2020/04/12
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="rodape">
+        <div class="rodape-titulo">
+            <h1>EVOLVE<span style="color:rgb(235, 225, 225);">SEC</span></h1>
+            <div style="font-size: 10px;">
+                © 2020 EvolveSec - Todos os direitos reservados
+            </div>
+        </div>
+        <div class="rodape-caixa">
+            SOBRE
+            <br>
+            <a class="linkRodape" href="">Quem somos</a>
+        </div>
+
+        <div class="rodape-caixa">
+            <span style="padding-left: 30px;">MÍDIAS</span>
+            <br>
+            <ul>
+                <li><a href="" class="fa fa-facebook"></a></li>
+                <li><a href="" class="fa fa-twitter"></a></li>
+                <li><a href="" class="fa fa-instagram"></a></li>
+            </ul>
+            
+        </div>
+
+        <div class="rodape-caixa">
+            <span style="text-align: center;">DÚVIDAS</span>
+            <br>
+            <a class="linkRodape" href="">Ajuda</a>
+            <br>
+            <a class="linkRodape" href="">Contato</a>
+            <br>
+            <a class="linkRodape" href="">Política de privacidade</a>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+<script>
+
+    let url = 'http://localhost:3333';
+    fetch(url + '/busca', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "GET",
+                
+            }).then(resposta => {
+                if(resposta.ok) {
+                    resposta.json().then(json => {
+                        let tamanho = json.length
+                        for(let cont = (tamanho - 1); cont >= 0; cont--){
+
+                            itens.innerHTML += `<a href="writeUpBD.html"><div class="writeUp"><img src="./imagens/padrao.png"><div class='writeUp-conteudo'><h1>${json[cont].titulo}</h1><div class="writeUp-rodape"><i class="fa fa-user-circle-o" style="padding: 0; font-size: 25px;"></i>bruno<span>WRITE-UP - ${(json[cont].createdAt).slice(0, 10)}</span></div></div></div></a><br>`
+
+                        }
+                    });
+                }
+            });
+</script>

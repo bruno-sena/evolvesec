@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvolveSec</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="estiloEvolve.css">
+    <link rel="sortcut icon" href="imagens/crime.png">
+    
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="title-header">
+                <h1>
+                    EVOLVE<span style="color:rgb(235, 225, 225)">SEC</span>
+                </h1>
+            </div>
+
+            <div class="busca">
+                <input type="text" placeholder="BUSCAR...">
+            </div>
+
+            <div class="nav">
+                <ul>
+                  <li><a href="index.html">NEWS</a></li>
+                  <li><a href="artigos.html">ARTIGOS</a></li>
+                  <li><a href="write-ups.html">WRITE-UPS</a></li>
+                  <li><a href="publicar.html">PUBLICAR</a></li>
+                  <li><a href="login.html" style="width:20px;"><i class="fa fa-user-circle-o" style="padding: 0; font-size: 25px;"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-2">
+        <div class="conteudo">
+     
+            <div class="title-conteudo">
+                PUBLICAR
+            </div>
+            <div class="caixa-publicar">
+                <form action="/add" method="POST">
+                    <h1>Título</h1>
+                    <input type="text" name="titulo">
+                    <br><br><br>
+                    <h1>Conteúdo</h1>
+                    <textarea name="conteudo"></textarea>
+                    <br><br><br>
+                    <button type="submit">PUBLICAR</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="rodape">
+        <div class="rodape-titulo">
+            <h1>EVOLVE<span style="color:rgb(235, 225, 225);">SEC</span></h1>
+            <div style="font-size: 10px;">
+                © 2020 EvolveSec - Todos os direitos reservados
+            </div>
+        </div>
+        <div class="rodape-caixa">
+            SOBRE
+            <br>
+            <a class="linkRodape" href="">Quem somos</a>
+        </div>
+
+        <div class="rodape-caixa">
+            <span style="padding-left: 30px;">MÍDIAS</span>
+            <br>
+            <ul>
+                <li><a href="https://www.facebook.com/brunolopessena.sena" class="fa fa-facebook"></a></li>
+                <li><a href="" class="fa fa-twitter"></a></li>
+                <li><a href="" class="fa fa-instagram"></a></li>
+            </ul>
+            
+        </div>
+
+        <div class="rodape-caixa">
+            <span style="text-align: center;">DÚVIDAS</span>
+            <br>
+            <a class="linkRodape" href="">Ajuda</a>
+            <br>
+            <a class="linkRodape" href="">Contato</a>
+            <br>
+            <a class="linkRodape" href="">Política de privacidade</a>
+        </div>
+    </div>
+
+
+</body>
+</html>

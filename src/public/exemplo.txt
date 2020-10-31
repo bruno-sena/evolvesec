@@ -1,0 +1,84 @@
+
+
+
+// url padrão da api
+let url = 'http://localhost:3333';
+
+// pegando o elemento do botão
+let btnSubmit = document.querySelector('.btn-submit');
+
+// Criando o evento de quando clicar no botão de login
+btnSubmit.addEventListener('click', () => {
+    
+    let nome = document.getElementById('nome');
+    let email = document.getElementById('email');
+    let senha = document.getElementById('senha');
+
+
+    // Verificando se os campos estão vazios
+    if(email.value === '' || senha.value === '' || nome.value === '') { 
+        
+        email.classList.remove('is-invalid-input');
+        senha.classList.remove('is-invalid-input');
+
+        nome.classList.remove('is-invalid-input');
+        if(email.value === '') {
+            email.classList.add('is-invalid-input');
+        }
+        if(senha.value === '') {
+            senha.classList.add('is-invalid-input');
+        }
+        if(nome.value === '') {
+            nome.classList.add('is-invalid-input');
+        }
+
+        // Mostrando a mensagem
+        document.querySelector('.message-form').style.display = "block";
+
+    } else {
+        // Ocutando a mensagem
+        document.querySelector('.message-form').style.display = "none";
+        email.classList.remove('is-invalid-input');
+        senha.classList.remove('is-invalid-input');
+        nome.classList.remove('is-invalid-input');
+
+        email = email.value;
+        senha = senha.value;
+        nome = nome.value;
+       
+        fetch(url + '/user', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({ 
+                name: nome,
+                email, 
+                password: senha
+             })
+            
+        }).then(resposta => {
+            if(resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json.message)
+                    if(json.message == "Usuário criado com sucesso!") {
+                        document.querySelector('.message-form2').style.display = "block";
+                        setTimeout(() => {
+                            window.location.href = 'login.html'
+                        }, 1200);
+                    }
+                    if(json.message == "Esse usuário já existe!") {
+                        document.querySelector('.message-form').style.display = "block";
+                        document.querySelector('.message-form span').innerHTML = `Opps... ${json.message}`;
+
+                        document.getElementById('nome').classList.add('is-invalid-input');
+                        document.getElementById('email').classList.add('is-invalid-input');
+                        document.getElementById('senha').classList.add('is-invalid-input');
+                    }
+                });
+            }
+        });
+    }
+
+});

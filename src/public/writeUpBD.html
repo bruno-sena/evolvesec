@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvolveSec</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="estiloEvolve.css">
+    <link rel="sortcut icon" href="imagens/crime.png">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="title-header">
+                <h1>
+                    EVOLVE<span style="color:rgb(235, 225, 225)">SEC</span>
+                </h1>
+            </div>
+
+            <div class="busca">
+                <input type="text" placeholder="BUSCAR...">
+            </div>
+
+            <div class="nav">
+                <ul>
+                  <li><a href="index.html">NEWS</a></li>
+                  <li><a href="artigos.html">ARTIGOS</a></li>
+                  <li><a href="write-ups.html">WRITE-UPS</a></li>
+                  <li><a href="publicar.html">PUBLICAR</a></li>
+                      
+                </li>
+                  <li><a href="login.html" style="width:20px;"><i class="fa fa-user-circle-o" style="padding: 0; font-size: 25px;"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-2">
+        <div class="conteudo">
+            <div id="divTitulo" class=titulo-noticia>
+                
+            </div>
+    
+            <div class="subtitulo-noticia">
+                <i class="fa fa-user-circle-o"></i> bruno
+            </div>
+            <div class="imagem-noticia">
+                <img style="width: 80%; margin-left: 100px; margin-right: 100px; height: 450px;" src="imagens/padrao.png" alt="">
+            </div>
+            <hr style="color: #ed145b; width: 90%;">
+    
+            <div id="divConteudo" class="conteudo-noticia">
+                
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="rodape">
+        <div class="rodape-titulo">
+            <h1>EVOLVE<span style="color:rgb(235, 225, 225);">SEC</span></h1>
+            <div style="font-size: 10px;">
+                © 2020 EvolveSec - Todos os direitos reservados
+            </div>
+        </div>
+        <div class="rodape-caixa">
+            SOBRE
+            <br>
+            <a class="linkRodape" href="">Quem somos</a>
+        </div>
+
+        <div class="rodape-caixa">
+            <span style="padding-left: 30px;">MÍDIAS</span>
+            <br>
+            <ul>
+                <li><a href="https://www.facebook.com/brunolopessena.sena" class="fa fa-facebook"></a></li>
+                <li><a href="" class="fa fa-twitter"></a></li>
+                <li><a href="" class="fa fa-instagram"></a></li>
+            </ul>
+            
+        </div>
+
+        <div class="rodape-caixa">
+            <span style="text-align: center;">DÚVIDAS</span>
+            <br>
+            <a class="linkRodape" href="">Ajuda</a>
+            <br>
+            <a class="linkRodape" href="">Contato</a>
+            <br>
+            <a class="linkRodape" href="">Política de privacidade</a>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+<script>
+
+    let url = 'http://localhost:3333';
+        fetch(url + '/busca', {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: "GET",
+                    
+                }).then(resposta => {
+                    if(resposta.ok) {
+                        resposta.json().then(json => {
+                            let tamanho = json.length
+                            divTitulo.innerHTML = json[tamanho-1].titulo;
+                            divConteudo.innerHTML = json[tamanho-1].conteudo;
+
+                            
+                        });
+                    }
+                });
+</script>

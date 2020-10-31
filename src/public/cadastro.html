@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estiloLogin.css">
+    <link rel="sortcut icon" href="imagens/crime.png">
+    
+</head>
+<body>
+    <br><br><br><br><br><br><br>
+    <div class="caixaLogin">
+        <div class="logo">
+            <h1>EVOLVE<span style="color:rgb(235, 225, 225) ;">SEC</span></h1>
+        </div>
+    
+        <div class="login">
+                Cadastre-se agora:
+                <input required type="email" placeholder="EMAIL" id="emailCad">
+                <br>
+                <input type="text" placeholder="NOME DE USUÁRIO" id="nomeCad">
+                <br>
+                <input type="password" placeholder="SENHA" id="senhaCad">
+                <br>
+                <input type="password" placeholder="CONFIRME SUA SENHA" id="confirmaSenha" >
+                <button onclick="enviaCadastro()">CADASTRAR</button>
+                <div id="mensagemAcerto"></div>
+                <ul id="mensagemErro"></ul>
+            <br>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+<script>
+
+      function enviaCadastro() {
+        var erros = validaCadastro();
+        mensagemErro.innerHTML = "";
+        mensagemAcerto.innerHTML = "";
+
+        if (erros.length > 0) {
+          for (var i = 0; i < erros.length; i++) {
+            var erro = erros[i];
+            var li = document.createElement("li");
+            li.innerHTML = erro;
+            mensagemErro.appendChild(li);
+          }
+        } else {
+          cadastrar();
+        }
+        
+        // Aqui vai ter um código que envia as
+        // informações preenchidas para o BD
+        return;
+      }
+
+      function validaCadastro() {
+        var erros = [];
+        console.log(emailCad.value.indexOf("@") == -1);
+
+        if (!nomeCad.value) {
+          erros.push("O nome não foi preenchido");
+        }
+
+        if (emailCad.value.indexOf("@") == -1) {
+          erros.push("O formato de email é: usuario@dominio.com");
+        } else {
+          var parts = emailCad.value.split("@");
+          var domain = parts[1];
+
+          if (domain.indexOf(".") == -1) {
+            erros.push("O formato de email é: usuario@dominio.com");
+          } else {
+            var domainParts = domain.split(".");
+            var ext = domainParts[1];
+
+            if (ext.length > 4 || ext.length < 2) {
+              erros.push("O formato de email é: usuario@dominio.com");
+            }
+          }
+        }
+        if (senhaCad.value != confirmaSenha.value ){
+          erros.push("As senhas não coincidem");
+        }
+
+
+        return erros;
+      }
+    //-------------------------------
+    let url = 'http://localhost:3333';
+    function cadastrar(){
+        fetch(url + '/user', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({ 
+                name: nomeCad.value,
+                email: emailCad.value,
+                password: senhaCad.value
+             })
+            
+        }).then(resposta => {
+            if(resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json.message)
+                    if(json.message == "Usuário criado com sucesso!") {
+                      mensagemAcerto.innerHTML = "Cadastrado com sucesso"
+                        setTimeout(() => {
+                            window.location.href = 'login.html'
+                        }, 1200);
+                    }
+                    if(json.message == "Esse usuário já existe!") {
+                      mensagemAcerto.innerHTML = "Esse usuário já existe!"
+                    }
+                });
+            }
+        });
+
+    }
+</script>

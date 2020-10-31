@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estiloLogin.css">
+    <link rel="sortcut icon" href="imagens/crime.png">
+</head>
+<body>
+    <div id="corpo">
+        <br><br><br><br><br><br><br><br><br>
+        <div class="caixaLogin">
+            <div class="logo">
+                <h1>EVOLVE<span style="color:rgb(235, 225, 225) ;">SEC</span></h1>
+            </div>
+    
+            <div class="login">
+                <form action="">
+                    <input type="email" placeholder="EMAIL" id="emailLogin">
+                    <br>
+                    <input type="password" placeholder="SENHA" id="senhaLogin">
+                    <button onclick="enviaLogin()" type="button">ENTRAR</button>
+                </form>
+                <div id="mensagemAcerto"></div>
+                <ul id="mensagemErro"></ul>
+                <span>Não possui cadastro? <a href="cadastro.html">Crie uma conta</a></span> 
+                <br>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
+
+
+<script>
+
+function enviaLogin() {
+        var erros = validaLogin();
+        mensagemErro.innerHTML = "";
+        mensagemAcerto.innerHTML = "";
+
+        if (erros.length > 0) {
+          for (var i = 0; i < erros.length; i++) {
+            var erro = erros[i];
+            var li = document.createElement("li");
+            li.innerHTML = erro;
+            mensagemErro.appendChild(li);
+          }
+        } else {
+          logar();
+        }
+        
+        // Aqui vai ter um código que envia as
+        // informações preenchidas para o BD
+        return;
+      }
+
+      function validaLogin() {
+        var erros = [];
+        console.log(emailLogin.value.indexOf("@") == -1);
+
+        if (!senhaLogin.value || !emailLogin.value) {
+          erros.push("Preencha todos os campos");
+        }
+        return erros;
+      }
+
+
+    //-----------------------------
+    let url = 'http://localhost:3333';
+    function logar(){
+        fetch(url + '/login', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({ 
+                email: emailLogin.value,
+                senha: senhaLogin.value
+             })
+            
+        }).then(resposta => {
+            if(resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json.message)
+                    if(json.message == "Login feito com sucesso!") {
+                        corpo.innerHTML = `<img src="imagens/load.gif" alt="" style="margin-left: 40%; margin-top: 15%;">`
+                        setTimeout(() => {
+                            window.location.href = 'index.html'
+                        }, 1600);
+                    }
+                    if(json.message == "Opps.. Usuário ou Senha inválidos!") {
+                        mensagemAcerto.innerHTML = 'Usuário ou Senha inválidos!'
+                    }
+                });
+            }
+        });
+    }
+</script>

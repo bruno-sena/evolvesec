@@ -1,0 +1,75 @@
+body{
+    background: url('imagens/fundoLogin2.png');
+    color: #77868e;
+    font-family: Exo;
+    font-weight: 900;
+}
+
+.caixaLogin{
+    background-color: #151819;
+    margin: auto;
+    height: auto;
+    width: 40%;
+    border-bottom: #ed145b 3px solid;
+    border-top: #ed145b 3px solid;
+ 
+}
+
+.logo{
+    font-family: Orbitron;
+    width: 44%;
+    margin: auto;
+    color: #ed145b;
+    padding-top: 10px;
+}
+
+.login{
+    width: 50%;
+    margin: auto;
+    align-content: center;
+    padding: 10px;
+}
+
+.login input{
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-family:  Exo;
+    font-weight: 900;
+    width: 100%;
+}
+
+.login button{
+    background-color: #0c0b0b;
+    color: #ed145b;
+    font-family: Exo;
+    font-weight: 900;
+    transition: all 0.3s;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 3px;
+    text-align: center;
+}
+
+.login button:hover{
+    background-color: #ed145b;
+    color: #0c0b0b;
+}
+
+.login span{
+    font-size: 15px;
+}
+
+.login a{
+    color: #ed145b;
+    text-decoration: none;
+}
+ul{
+    list-style-type: none;
+    color: #ed145b;
+}
+
+#mensagemAcerto{
+    color: #ed145b;
+}

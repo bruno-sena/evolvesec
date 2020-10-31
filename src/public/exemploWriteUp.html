@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvolveSec</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="estiloEvolve.css">
+    <link rel="sortcut icon" href="imagens/crime.png">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="title-header">
+                <h1>
+                    EVOLVE<span style="color:rgb(235, 225, 225)">SEC</span>
+                </h1>
+            </div>
+
+            <div class="busca">
+                <input type="text" placeholder="BUSCAR...">
+            </div>
+
+            <div class="nav">
+                <ul>
+                  <li><a href="index.html">NEWS</a></li>
+                  <li><a href="artigos.html">ARTIGOS</a></li>
+                  <li><a href="write-ups.html">WRITE-UPS</a></li>
+                  <li><a href="publicar.html">PUBLICAR</a></li>
+                      
+                </li>
+                  <li><a href="login.html" style="width:20px;"><i class="fa fa-user-circle-o" style="padding: 0; font-size: 25px;"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-2">
+        <div class="conteudo">
+            <div class=titulo-noticia>
+                Ataque de Trojan(Cavalo de Tróia) utilizando Python
+            </div>
+    
+            <div class="subtitulo-noticia">
+                <i class="fa fa-user-circle-o"></i> Vinicus de Carvalho
+            </div>
+            <div class="imagem-noticia">
+                <img style="width: 80%; margin-left: 100px; margin-right: 100px; height: 450px;" src="imagens/pythonTrojan.png" alt="">
+            </div>
+            <hr style="color: #ed145b; width: 90%;">
+    
+            <div class="conteudo-noticia">
+                <p>
+                    Para quem ainda não sabia, um Trojan Horse Attack consiste em incorporar uma exploração em um aplicativo de aparência inocente ou mesmo em um documento. Como você deve ter adivinhado hoje, incorporaremos um backdoor em uma GUI criada pelo Kivy. Esse ataque é bastante simples, a única coisa que você precisa saber são apenas alguns conceitos básicos sobre python e redes. Vamos começar!
+                </p>
+                <span>O Backdoor</span>
+                <p>
+                    Entre as muitas coisas que podemos incorporar em um cavalo de Tróia, eu escolho incorporar um Backdoor. Nós estaremos usando o que eu falei neste artigo: 
+                </p>
+                <a href="https://medium.com/bugbountywriteup/backdoor-attack-in-python-1395c91ea29a"><img src="imagens/backdoor.png" alt=""></a>
+                <br><br>
+                <span>O App</span>
+                <p>
+                    Esse é um ponto chave: usaremos a estrutura do Kivy para desenvolver um aplicativo com aparência inocente, mas, como diz o ataque de Trojan, ele conterá o backdoor malicioso, que usaremos para obter acesso ao computador. A partir de então, você será o proprietário do computador do alvo.
+                </p>
+                <p>
+                    AVISO: eu não sou um desenvolvedor experiente de aplicativos gráficos, só os uso quando realmente preciso. Portanto, o Trojan que criaremos não possui bons gráficos; no entanto, você poderá melhorá-lo por conta própria com a documentação do Kivy.
+                </p>
+                <p>
+                    Como dito no aviso, hoje não focaremos no gráfico do aplicativo, que pode ser facilmente aprimorado, basta ir para a documentação de Kivy; em vez disso, focaremos em como incorporar tudo o que você deseja (aqui um Backdoor) no um aplicativo gráfico.
+
+                </p>
+                <span>A máquina do hacker</span>
+                <p>
+                    Afinal, esse tempo gasto conversando sobre o que faremos para possuir a Máquina da Vítima, vamos falar sobre o hacker. Quando falamos sobre como enviar comandos para o Backdoor para executá-los no computador da vítima neste artigo, criamos nossa própria ferramenta para fazer isso. Mas hoje, vamos usar o Netcat.
+                    Abra um terminal e:
+
+                </p>
+                <img src="imagens/pyImg1.png" alt="">
+                <br><br>
+    
+                <span>"Falar é fácil, mostre-me o código" -Linus Torvalds</span>
+    
+                <p>
+                    Agora é o momento de codificar nosso Trojan. Basicamente, organizaremos usando uma função (uma maliciosa) e uma classe (a GUI). Um código bem simples.
+
+                </p>
+                <img src="imagens/pyImg2.png" alt="">
+                <br><br>
+                <span>Finalmente, o ataque</span>
+                <p>
+                    Como mostrado anteriormente, usaremos o Netcat para ligar uma porta e ouvir as conexões de entrada. Nesse caso, usaremos a conhecida porta 4444. Este comando não fornecerá nenhuma saída até a vítima se conectar.
+
+                </p>
+                <p>
+                    Depois de iniciar o ataque na máquina do atacante, podemos completá-lo na máquina da vítima.
+                </p>
+                <p>
+                    Apenas exporte o código para a máquina de destino e execute-o, para que o backdoor funcione, verifique se você digitou o endereço IP correto na linha 10.
+                </p>
+                <p>
+                    Depois de executar o código no computador da vítima, você verá um aplicativo Kivy dizendo "olá mundo" no lado da vítima e no lado do atacante:
+                </p>
+                <img src="imagens/pyImg3.png" alt="">
+                <br>
+                <p>Então, nós temos um shell no computador da vítima usando um Shell Reverso. Ótimo!</p>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="rodape">
+        <div class="rodape-titulo">
+            <h1>EVOLVE<span style="color:rgb(235, 225, 225);">SEC</span></h1>
+            <div style="font-size: 10px;">
+                © 2020 EvolveSec - Todos os direitos reservados
+            </div>
+        </div>
+        <div class="rodape-caixa">
+            SOBRE
+            <br>
+            <a class="linkRodape" href="">Quem somos</a>
+        </div>
+
+        <div class="rodape-caixa">
+            <span style="padding-left: 30px;">MÍDIAS</span>
+            <br>
+            <ul>
+                <li><a href="https://www.facebook.com/brunolopessena.sena" class="fa fa-facebook"></a></li>
+                <li><a href="" class="fa fa-twitter"></a></li>
+                <li><a href="" class="fa fa-instagram"></a></li>
+            </ul>
+            
+        </div>
+
+        <div class="rodape-caixa">
+            <span style="text-align: center;">DÚVIDAS</span>
+            <br>
+            <a class="linkRodape" href="">Ajuda</a>
+            <br>
+            <a class="linkRodape" href="">Contato</a>
+            <br>
+            <a class="linkRodape" href="">Política de privacidade</a>
+        </div>
+    </div>
+
+
+</body>
+</html>
